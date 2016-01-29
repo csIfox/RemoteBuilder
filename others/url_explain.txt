@@ -5,7 +5,7 @@ http://localhost:8080/RemoteBuilderService/register
 	例子：http://localhost:8080/RemoteBuilderService/register?userName=luyunming&password=1234567890&phone=15708464677
 	
 http://localhost:8080/RemoteBuilderService/isNameExit
-	检测用户名是否已存在
+	说明：检测用户名是否已存在
 	参数：userName
 	例子：http://localhost:8080/RemoteBuilderService/isNameExit?userName=luyunming
 	

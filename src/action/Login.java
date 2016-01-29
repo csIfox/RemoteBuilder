@@ -20,32 +20,24 @@ public class Login extends MapActionSupport {
 	private String userName;
 	private String password;
 
-	public String login() throws Exception {
-		
+	public String login() throws NamingException, SQLException {
+		// TODO
 		System.out.println("用户：" + userName + "  登录");
-
-		if (userName == null | password == null | "".equals(userName) | "".equals(password)) {
-			setDataMap("400.1", "用户名或密码不能为空");
-			throw new Exception();
+		UserInfoOpreate opreate = new UserInfoOpreate();
+		UserInfo userInfo = opreate.getInfoByPassword(userName, password);
+		if (userInfo != null) {
+			setDataMap("200", userInfo);
+			return SUCCESS;
+		} else {
+			setDataMap("400.2", "登录验证失败");
+			return SUCCESS;
 		}
-		try {
-			UserInfoOpreate opreate = new UserInfoOpreate();
-			UserInfo userInfo = opreate.getInfoByPassword(userName, password);
-			if(userInfo != null){
-				setDataMap("200", userInfo);
-				return SUCCESS;
-			}else{
-				setDataMap("400.2", "登录验证失败");
-				return SUCCESS;
-			}
-		} catch (NamingException e) {
-			e.printStackTrace();
-			setServeErrorData();
-			return SUCCESS;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			setServeErrorData();
-			return SUCCESS;
+	}
+
+	public void validateLogin() {
+		if (userName == null | password == null | "".equals(userName) | "".equals(password)) {
+			setDataMap("400", "用户名或密码不能为空");
+			addActionError(null);
 		}
 	}
 

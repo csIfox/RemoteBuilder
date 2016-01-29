@@ -20,12 +20,8 @@ public class Register extends MapActionSupport {
 	private String phone;
 
 	public String register() throws NamingException, SQLException {
+		// TODO
 		System.out.println("注册名：" + userName);
-		if (userName == null | password == null | phone == null | "".equals(userName) | "".equals(password)
-				| "".equals(phone)) {
-			setEmptyErrorData();
-			return SUCCESS;
-		}
 		UserInfoOpreate opreate = new UserInfoOpreate();
 		boolean flag = opreate.registerUser(userName, password, phone);
 		if (!flag) {
@@ -35,6 +31,14 @@ public class Register extends MapActionSupport {
 			UserInfo userInfo = opreate.getInfoByPassword(userName, password);
 			setDataMap("200", userInfo);
 			return SUCCESS;
+		}
+	}
+
+	public void validateRegister() {
+		if (userName == null | password == null | phone == null | "".equals(userName) | "".equals(password)
+				| "".equals(phone)) {
+			setEmptyErrorData();
+			addActionError(null);
 		}
 	}
 

@@ -6,9 +6,8 @@
 <struts>
 	<package name="ifox" namespace="/" extends="json-default">
 		<default-action-ref name="default"></default-action-ref>
-
 		<global-results>
-			<result name="exception">/error.jsp</result>
+			<result name="exception">/serverError.jsp</result>
 		</global-results>
 		<global-exception-mappings>
 			<exception-mapping result="exception" exception="java.lang.Exception"></exception-mapping>
@@ -18,13 +17,12 @@
 			<result type="json">
 				<param name="root">dataMap</param>
 			</result>
+			<interceptor-ref name="defaultStack">
+				<param name="exception.logEnabled">true</param>
+				<param name="exception.logLevel">error</param>
+			</interceptor-ref>
 		</action>
 		<action name="default" class="action.ErrorResolve" method="defaultError">
-			<result type="json">
-				<param name="root">dataMap</param>
-			</result>
-		</action>
-		<action name="login" class="action.Login" method="login">
 			<result type="json">
 				<param name="root">dataMap</param>
 			</result>
@@ -33,20 +31,53 @@
 				<param name="exception.logLevel">error</param>
 			</interceptor-ref>
 		</action>
-		<action name="register" class="action.Register" method="register">
-			<result type="json">
+		<action name="login" class="action.Login" method="login">
+			<result name="success" type="json">
 				<param name="root">dataMap</param>
 			</result>
+			<result name="input" type="json">
+				<param name="root">dataMap</param>
+			</result>
+			<interceptor-ref name="defaultStack">
+				<param name="exception.logEnabled">true</param>
+				<param name="exception.logLevel">error</param>
+			</interceptor-ref>
+		</action>
+		<action name="register" class="action.Register" method="register">
+			<result name="success" type="json">
+				<param name="root">dataMap</param>
+			</result>
+			<result name="input" type="json">
+				<param name="root">dataMap</param>
+			</result>
+			<interceptor-ref name="defaultStack">
+				<param name="exception.logEnabled">true</param>
+				<param name="exception.logLevel">error</param>
+			</interceptor-ref>
 		</action>
 		<action name="isNameExit" class="action.IsNameExit" method="isNameExit">
-			<result type="json">
+			<result name="success" type="json">
 				<param name="root">dataMap</param>
 			</result>
+			<result name="input" type="json">
+				<param name="root">dataMap</param>
+			</result>
+			<interceptor-ref name="defaultStack">
+				<param name="exception.logEnabled">true</param>
+				<param name="exception.logLevel">error</param>
+			</interceptor-ref>
 		</action>
 		<action name="isPhoneExit" class="action.IsPhoneExit" method="isPhoneExit">
-			<result type="json">
+			<result name="success" type="json">
 				<param name="root">dataMap</param>
 			</result>
+			<result name="input" type="json">
+				<param name="root">dataMap</param>
+			</result>
+			<interceptor-ref name="defaultStack">
+				<param name="exception.logEnabled">true</param>
+				<param name="exception.logLevel">error</param>
+			</interceptor-ref>
 		</action>
 
 	</package>
