@@ -6,6 +6,7 @@ import javax.naming.NamingException;
 
 import sql.opreate.UserInfoOpreate;
 import support.MapActionSupport;
+import support.ValidateSupport;
 import bean.UserInfo;
 
 public class Login extends MapActionSupport {
@@ -29,14 +30,17 @@ public class Login extends MapActionSupport {
 			setDataMap("200", userInfo);
 			return SUCCESS;
 		} else {
-			setDataMap("400.2", "登录验证失败");
+			setDataMap("400", "登录验证失败");
 			return SUCCESS;
 		}
 	}
 
 	public void validateLogin() {
-		if (userName == null | password == null | "".equals(userName) | "".equals(password)) {
+		if (userName == null || password == null) {
 			setDataMap("400", "用户名或密码不能为空");
+			addActionError(null);
+		} else if (ValidateSupport.validateUserName(userName) == false) {
+			setDataMap("400", "验证失败!");
 			addActionError(null);
 		}
 	}

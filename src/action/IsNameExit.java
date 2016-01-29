@@ -6,6 +6,7 @@ import javax.naming.NamingException;
 
 import sql.opreate.UserInfoOpreate;
 import support.MapActionSupport;
+import support.ValidateSupport;
 
 public class IsNameExit extends MapActionSupport {
 
@@ -17,6 +18,9 @@ public class IsNameExit extends MapActionSupport {
 	private String userName;
 
 	public String isNameExit() throws NamingException, SQLException {
+		// TODO
+		System.out.println("isNameExit:  " + userName);
+
 		UserInfoOpreate opreate = new UserInfoOpreate();
 		boolean flag = opreate.isNameExit(userName);
 		if (flag) {
@@ -29,8 +33,11 @@ public class IsNameExit extends MapActionSupport {
 	}
 
 	public void validateIsNameExit() {
-		if (userName == null | "".equals(userName)) {
+		if (userName == null) {
 			setEmptyErrorData();
+			addActionError(null);
+		} else if (ValidateSupport.validateUserName(userName) == false) {
+			setDataMap("400", "用户名格式错误！");
 			addActionError(null);
 		}
 	}

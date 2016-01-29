@@ -6,6 +6,7 @@ import javax.naming.NamingException;
 
 import sql.opreate.UserInfoOpreate;
 import support.MapActionSupport;
+import support.ValidateSupport;
 
 public class IsPhoneExit extends MapActionSupport {
 
@@ -29,7 +30,10 @@ public class IsPhoneExit extends MapActionSupport {
 	}
 
 	public void validateIsPhoneExit() {
-		if (phone == null | "".equals(phone)) {
+		if (phone == null) {
+			setEmptyErrorData();
+			addActionError(null);
+		} else if (ValidateSupport.validateMobilePhone(phone) == false) {
 			setEmptyErrorData();
 			addActionError(null);
 		}

@@ -25,7 +25,7 @@ public class MapActionSupport extends ActionSupport{
 	}
 	
 	public void setEmptyErrorData(){
-		setDataMap("400.1", "内容不能为空");
+		setDataMap("400", "内容不能为空");
 	}
 
 	public Map<String, Object> getDataMap() {

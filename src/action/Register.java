@@ -7,6 +7,7 @@ import javax.naming.NamingException;
 import bean.UserInfo;
 import sql.opreate.UserInfoOpreate;
 import support.MapActionSupport;
+import support.ValidateSupport;
 
 public class Register extends MapActionSupport {
 
@@ -25,7 +26,7 @@ public class Register extends MapActionSupport {
 		UserInfoOpreate opreate = new UserInfoOpreate();
 		boolean flag = opreate.registerUser(userName, password, phone);
 		if (!flag) {
-			setDataMap("400.3", "注册失败！");
+			setDataMap("400", "注册失败！");
 			return SUCCESS;
 		} else {
 			UserInfo userInfo = opreate.getInfoByPassword(userName, password);
@@ -35,9 +36,17 @@ public class Register extends MapActionSupport {
 	}
 
 	public void validateRegister() {
-		if (userName == null | password == null | phone == null | "".equals(userName) | "".equals(password)
-				| "".equals(phone)) {
+		if (userName == null || password == null || phone == null) {
 			setEmptyErrorData();
+			addActionError(null);
+		} else if (ValidateSupport.validateUserName(userName) == false) {
+			setDataMap("400", "用户名格式错误");
+			addActionError(null);
+		} else if (ValidateSupport.validatePassword(password) == false) {
+			setDataMap("400", "密码格式错误");
+			addActionError(null);
+		} else if (ValidateSupport.validateMobilePhone(phone) == false) {
+			setDataMap("400", "手机号格式错误");
 			addActionError(null);
 		}
 	}
