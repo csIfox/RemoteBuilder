@@ -1,0 +1,30 @@
+
+http://localhost:8080/RemoteBuilderService/register
+	说明：注册链接
+	参数：userName, password, phone
+	例子：http://localhost:8080/RemoteBuilderService/register?userName=luyunming&password=1234567890&phone=15708464677
+	
+http://localhost:8080/RemoteBuilderService/isNameExit
+	检测用户名是否已存在
+	参数：userName
+	例子：http://localhost:8080/RemoteBuilderService/isNameExit?userName=luyunming
+	
+http://localhost:8080/RemoteBuilderService/isPhoneExit
+	说明：检测手机号是否已被绑定
+	参数：phone
+	例子：http://localhost:8080/RemoteBuilderService/isPhoneExit?phone=15708464677
+	
+http://localhost:8080/RemoteBuilderService/login
+	说明：依据用户名与密码登录
+	参数：userName, password
+	例子：http://localhost:8080/RemoteBuilderService/login?userName=luyunming&password=1234567890
+	
+http://localhost:8080/RemoteBuilderService/
+	说明：
+	参数：
+	例子：http://localhost:8080/RemoteBuilderService/
+	
+http://localhost:8080/RemoteBuilderService/
+	说明：
+	参数：
+	例子：http://localhost:8080/RemoteBuilderService/

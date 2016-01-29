@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="ifox" namespace="/" extends="json-default">
+		<default-action-ref name="default"></default-action-ref>
+
+		<global-results>
+			<result name="exception" >/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="exception" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+
+		<action name="serverError" class="action.ErrorResolve" method="serverError">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="default" class="action.ErrorResolve" method="defaultError">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="login" class="action.Login" method="login">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="register" class="action.Register" method="register">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="isNameExit" class="action.IsNameExit" method="isNameExit">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="isPhoneExit" class="action.IsPhoneExit" method="isPhoneExit">
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+
+	</package>
+
+</struts>
