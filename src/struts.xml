@@ -8,7 +8,7 @@
 		<default-action-ref name="default"></default-action-ref>
 
 		<global-results>
-			<result name="exception" >/error.jsp</result>
+			<result name="exception">/error.jsp</result>
 		</global-results>
 		<global-exception-mappings>
 			<exception-mapping result="exception" exception="java.lang.Exception"></exception-mapping>
@@ -28,6 +28,10 @@
 			<result type="json">
 				<param name="root">dataMap</param>
 			</result>
+			<interceptor-ref name="defaultStack">
+				<param name="exception.logEnabled">true</param>
+				<param name="exception.logLevel">error</param>
+			</interceptor-ref>
 		</action>
 		<action name="register" class="action.Register" method="register">
 			<result type="json">
